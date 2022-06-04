@@ -1,0 +1,21 @@
+<table class="table is-fullwidth">
+  <thead>
+    <th>Amount</th>
+    <th>Method </th>
+    <th>Sales</th>
+    <th>Product</th>
+  </thead>
+  <tbody>
+    {{#each dosage}}
+      <tr>
+        <td>{{amount}} Litres </td>
+        <td>{{method}}</td>
+        <td> {{donor.firstName}} {{donor.lastName}} </td>
+        <td>{{product.brandName}}>>{{product.typeName}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class="box">
+  <div class="title is-5"> Total:  {{total}} </div>
+</div>
