@@ -12,7 +12,6 @@ import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
 import { validate } from "./api/jwt-utils.js";
-import Joi from "joi";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,7 +31,6 @@ async function init() {
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(jwt);
-  server.validator(Joi);
 
   server.views({
     engines: {
