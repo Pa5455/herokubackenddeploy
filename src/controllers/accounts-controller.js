@@ -1,5 +1,6 @@
 import bcryptjs from "bcryptjs";
 import { db } from "../models/db.js";
+import { UserSpec, } from "../models/joi-schema.js";
 
 const saltRounds = 10;
 
@@ -18,6 +19,12 @@ export const accountsController = {
   },
   signup: {
     auth: false,
+    validate: {
+      payload: UserSpec,
+      failAction: function (request, h, error) {
+        return h.view("Signup", { title: "Sign up error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const user = request.payload;
       user.password = await bcryptjs.hash(user.password, saltRounds);
